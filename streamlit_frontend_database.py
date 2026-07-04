@@ -79,7 +79,10 @@ for thread_id in st.session_state['chat_threads'][::-1]:
         st.session_state['message_history'] = temp_message  # restore history to session state
 
 
-CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']}}  # config passed to backend for current thread
+CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']},
+          'metadata' : {'thread_id': st.session_state['thread_id']},
+          'run_name': 'chat_turn'
+        }  # config passed to backend for current thread
 
 for message in st.session_state['message_history']:
     with st.chat_message(message['role']):
